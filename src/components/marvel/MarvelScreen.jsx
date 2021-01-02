@@ -1,5 +1,4 @@
 import React from 'react'
-import { getHeroesByPublisher } from '../../selectors/getHeroesByPublisher';
 import { HeroList } from '../heroes/HeroList';
 
 export const MarvelScreen = () => {
