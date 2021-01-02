@@ -1,0 +1,14 @@
+import React from 'react'
+import { getHeroesByPublisher } from '../../selectors/getHeroesByPublisher';
+import { HeroList } from '../heroes/HeroList';
+
+export const DcScreen = () => {
+    
+
+  return (
+    <div>
+        <h1>DC Heroes</h1>
+      <HeroList publisher="DC Comics"></HeroList>
+    </div>
+  );
+}
