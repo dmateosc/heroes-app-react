@@ -8,17 +8,18 @@ import { getHeroesByName } from "../../selectors/getHeroesByName";
 
 export const SearchScreen = ({ history }) => {
   const location = useLocation();
-  const { q = "" } = queryString.parse(location);
+  const { q = '' } = queryString.parse(location.search);
+  const [formValues, handleInputChange] = useForm({
+    searchText: q,
+  });
+  const { searchText } = formValues;
+  const heroesFiltered = useMemo(() => getHeroesByName(q), [q]);
   const handleSearch = (e) => {
     e.preventDefault();
     history.push(`?q=${searchText}`);
   };
-  const heroesFiltered = useMemo(() => getHeroesByName(q), [q]);
-  const [formValues, handleInputChange] = useForm({
-    searchText: q,
-  });
 
-  const { searchText } = formValues;
+
   return (
     <div>
       <h1>Search Screen</h1>
@@ -31,7 +32,8 @@ export const SearchScreen = ({ history }) => {
               type="text"
               placeholder="Finde your hero"
               className="form-control"
-              name="serach-text"
+              name="searchText"
+              autoComplete="off"
               value={searchText}
               onChange={handleInputChange}
             />
